@@ -1,10 +1,189 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
+	<head> 
+		<meta charset="utf-8"> 
+		<title>登录</title> 
+
+		<style type="text/css">
+			body,
+			div,
+			ul,
+			li,
+			form,
+			input,
+			img,
+			p {
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				position: relative;
+				background: rgba(0, 0, 0, 0.5);
+			}
+
+			ul {
+				list-style-type: none;
+				text-align: center;
+			}
+
+			ul li {
+				display: inline-block;
+				margin: 0px 10px;
+			}
+
+			ul li:hover {
+				cursor: pointer;
+			}
+
+			ul li img {
+				width: 50px;
+				height: 50px;
+			}
+
+			#login {
+				position: absolute;
+				top: 150px;
+				left: 50%;
+				margin-left: -150px;
+				width: 300px;
+				height: 400px;
+				background: white;
+				border-radius: 2px;
+				clear: both;
+			}
+
+			#login .image {
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				top: -75px;
+				left: 50%;
+				margin-left: -50px;
+			}
+
+			#login #form {
+				margin: 30px 20px;
+				vertical-align: middle;
+			}
+
+			#login .title {
+				font-weight: bold;
+				font-size: 20px;
+			}
+
+			#login .close {
+				width: 20px;
+				height: 20px;
+				float: right;
+				opacity: 0.6;
+				filter: opacity(60);
+			}
+
+			#login .close:hover {
+				width: 20px;
+				height: 20px;
+				float: right;
+				opacity: 1;
+				filter: opacity(100);
+			}
+
+			#login #form input {
+				width: 235px;
+				height: 35px;
+				margin-top: 10px;
+				display: block;
+				font-size: 14px;
+				padding: 0px 10px 0px 10px;
+			}
+
+			#login #form input.userName {
+				margin-top: 20px;
+			}
+
+			#login #form input.login {
+				width: 260px;
+				margin-top: 20px;
+				color: white;
+				background: rgb(0, 113, 255);
+				border-radius: 3px;
+				font-size: 14px;
+				cursor: pointer;
+			}
+
+			#login .noAccount {
+				margin-top: 20px;
+				font-size: 14px;
+			}
+		</style>
+
 	</head>
 	<body>
-		<p>欢迎来到我的个人博客！</p>
+
+		<div id="login">
+			<img class="image" src="img/normal.0447fe9.png" id="image">
+
+			<form action="" method="" id="form">
+				<span class="title">登录</span>
+				<img class="close" src="img/9.jpg" id="close">
+
+				<input type="text" name="" id="username" value="" placeholder="请输入手机号码或邮箱" class="userName" />
+
+				<input type="password" name="" id="password" value="" placeholder="请输入密码" />
+
+				<input type="button" name="" id="btnLogin" value="登录" class="login" />
+				<div class="noAccount">
+					<span>没有账号？</span><span style="color: rgb(0,113,255);cursor: pointer;"> 注册</span><span style="float: right;color: rgb(0,113,255);cursor: pointer;">忘记密码</span>
+				</div>
+				<p style="font-size: 14px;margin-top: 10px;">第三方登录：</p>
+
+				<ul style="margin-top: 10px;">
+					<li><img src="img/1.jpg"></li>
+					<li><img src="img/2.jpg"></li>
+					<li><img src="img/3.jpg"></li>
+				</ul>
+
+				<p style="font-size: 14px;margin-top: 10px;">注册登录即表示同意<span style="color: rgb(0,113,255);cursor: pointer;">用户协议、隐私政策</span></p>
+			</form>
+		</div>
+		<script src="js/jquery.js"></script>
+		<script type="text/javascript">
+			var login = document.getElementById("login");
+			var inputs = login.getElementsByTagName("input");
+			var normal = login.getElementsByClassName("normal");
+			var image = document.getElementById("image");
+			var btnLogin = document.getElementById("btnLogin");
+			var close = document.getElementById("close");
+			
+			login.onclick = function() {
+				image.src = "img/normal.0447fe9.png";
+			}
+			for (var i = 0; i < inputs.length; i++) {
+				inputs[i].index = i;
+				inputs[i].onclick = function(event) {
+					(event || window.event).cancelBubble = true;
+					if (this.index == 0) {
+						image.src = "img/greeting.1415c1c.png";
+					} else if (this.index == 1) {
+						image.src = "img/blindfold.58ce423.png";
+					}
+				}
+			}
+
+			btnLogin.onclick = function(event) {
+				(event || window.event).cancelBubble = true;
+				if (inputs[0].value == "") {
+					inputs[0].focus();
+					image.src = "img/greeting.1415c1c.png";
+				} else if (inputs[1].value == "") {
+					inputs[1].focus();
+					image.src = "img/blindfold.58ce423.png";
+				}
+			}
+			
+			close.onclick = function(){
+				login.style.display = "none";
+			}
+		</script>
 	</body>
 </html>
